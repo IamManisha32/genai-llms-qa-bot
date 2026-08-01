@@ -1,0 +1,614 @@
+[
+  {
+    "id": "kb001",
+    "topic": "Generative AI Overview",
+    "question": "What is the significance of generative AI?",
+    "answer": "Generative AI is transforming various fields through content generation, code creation, and image synthesis, having a major impact across industries in real-world applications."
+  },
+  {
+    "id": "kb002",
+    "topic": "Generative AI Architectures",
+    "question": "What are the key generative AI architectures?",
+    "answer": "The key generative AI architectures are Generative Adversarial Networks (GANs), Variational Autoencoders (VAEs), diffusion models, and transformers. Each differs in its training approach."
+  },
+  {
+    "id": "kb003",
+    "topic": "GANs",
+    "question": "What is a GAN?",
+    "answer": "A Generative Adversarial Network (GAN) is a generative AI architecture that trains two competing networks, a generator and a discriminator, against each other."
+  },
+  {
+    "id": "kb004",
+    "topic": "VAEs",
+    "question": "What is a VAE?",
+    "answer": "A Variational Autoencoder (VAE) is a generative AI architecture that learns to encode data into a compressed latent space and then decode it back, enabling generation of new data samples."
+  },
+  {
+    "id": "kb005",
+    "topic": "Diffusion Models",
+    "question": "What is a diffusion model?",
+    "answer": "A diffusion model is a generative AI architecture that learns to generate data by gradually reversing a noising process, starting from random noise and refining it into structured output."
+  },
+  {
+    "id": "kb006",
+    "topic": "Large Language Models",
+    "question": "What are GPT and BERT used for?",
+    "answer": "GPT (Generative Pretrained Transformer) and BERT (Bidirectional Encoder Representations from Transformers) are large language models applied in building NLP-based applications."
+  },
+  {
+    "id": "kb007",
+    "topic": "AI Hallucinations",
+    "question": "What is an AI hallucination?",
+    "answer": "An AI hallucination occurs when a model produces outputs with factual inaccuracies. Identifying hallucinations involves evaluating model outputs and understanding their implications in real-world applications."
+  },
+  {
+    "id": "kb008",
+    "topic": "Generative AI Tools",
+    "question": "What tools are used in generative AI development?",
+    "answer": "Key generative AI libraries and tools include Hugging Face transformers and PyTorch, which are used for implementing models and data loaders in model development."
+  },
+  {
+    "id": "kb009",
+    "topic": "Tokenization",
+    "question": "What is tokenization in NLP?",
+    "answer": "Tokenization converts raw text into numerical representations by breaking text into tokens and subwords, which form a vocabulary used for LLM training."
+  },
+  {
+    "id": "kb010",
+    "topic": "Tokenization Libraries",
+    "question": "Which libraries are used for tokenization?",
+    "answer": "Tokenization can be implemented using libraries such as NLTK, spaCy, BertTokenizer, and XLNetTokenizer."
+  },
+  {
+    "id": "kb011",
+    "topic": "Data Loaders",
+    "question": "What is the purpose of a data loader in LLM training?",
+    "answer": "A data loader batches, shuffles, and feeds data to models during training. In PyTorch, the DataLoader class is used with a custom collate function to process batches of text."
+  },
+  {
+    "id": "kb012",
+    "topic": "Data Quality",
+    "question": "Why does data quality matter for LLMs?",
+    "answer": "Data quality and diversity affect the performance and generalization of LLMs, making them key factors to evaluate when preparing training data."
+  },
+  {
+    "id": "kb013",
+    "topic": "Custom Data Loader",
+    "question": "How do you implement a custom NLP data loader?",
+    "answer": "A custom NLP data loader is implemented by coding a class that reads, tokenizes, and batches text data for model training, typically using PyTorch's Dataset and DataLoader classes."
+  },
+  {
+    "id": "kb014",
+    "topic": "Transformer Architecture",
+    "question": "What is a transformer in deep learning?",
+    "answer": "A transformer is a neural network architecture that relies on self-attention to process sequences in parallel, rather than step-by-step like older RNN-based models."
+  },
+  {
+    "id": "kb015",
+    "topic": "Self-Attention",
+    "question": "What is self-attention?",
+    "answer": "Self-attention is a mechanism that lets a model weigh the relevance of every other word in a sequence when representing a given word, capturing long-range relationships in text."
+  },
+  {
+    "id": "kb016",
+    "topic": "Multi-Head Attention",
+    "question": "What is multi-head attention?",
+    "answer": "Multi-head attention runs several attention operations in parallel, each learning to focus on different types of relationships in the input, then combines their outputs."
+  },
+  {
+    "id": "kb017",
+    "topic": "Positional Encoding",
+    "question": "What is positional encoding?",
+    "answer": "Positional encoding injects information about word order into a transformer, since self-attention alone has no built-in sense of sequence position."
+  },
+  {
+    "id": "kb018",
+    "topic": "Encoder-Decoder Architecture",
+    "question": "What is an encoder-decoder architecture?",
+    "answer": "An encoder-decoder architecture uses an encoder to process the input into a representation and a decoder to generate output from that representation, common in translation and summarization models."
+  },
+  {
+    "id": "kb019",
+    "topic": "Embeddings",
+    "question": "What are word embeddings?",
+    "answer": "Word embeddings are dense numerical vector representations of words or tokens that capture semantic meaning, placing similar words closer together in vector space."
+  },
+  {
+    "id": "kb020",
+    "topic": "Word2Vec",
+    "question": "What is Word2Vec?",
+    "answer": "Word2Vec is an early technique for learning word embeddings by predicting a word from its surrounding context or vice versa, capturing semantic relationships between words."
+  },
+  {
+    "id": "kb021",
+    "topic": "Fine-Tuning",
+    "question": "What is fine-tuning in machine learning?",
+    "answer": "Fine-tuning is the process of taking a pretrained model and further training it on a smaller, task-specific dataset to adapt it to a particular use case."
+  },
+  {
+    "id": "kb022",
+    "topic": "Transfer Learning",
+    "question": "What is transfer learning?",
+    "answer": "Transfer learning reuses knowledge from a model trained on one task or dataset to improve performance on a different but related task, reducing the need for training from scratch."
+  },
+  {
+    "id": "kb023",
+    "topic": "Prompt Engineering",
+    "question": "What is prompt engineering?",
+    "answer": "Prompt engineering is the practice of carefully designing input prompts to guide a language model toward producing more accurate or useful outputs."
+  },
+  {
+    "id": "kb024",
+    "topic": "Zero-Shot Learning",
+    "question": "What is zero-shot learning?",
+    "answer": "Zero-shot learning is when a model performs a task it was never explicitly trained on, relying only on its general pretrained knowledge and the task description."
+  },
+  {
+    "id": "kb025",
+    "topic": "Few-Shot Learning",
+    "question": "What is few-shot learning?",
+    "answer": "Few-shot learning is when a model is given only a small number of examples within the prompt to learn how to perform a new task, without updating its weights."
+  },
+  {
+    "id": "kb026",
+    "topic": "RLHF",
+    "question": "What is RLHF?",
+    "answer": "Reinforcement Learning from Human Feedback (RLHF) is a training technique where human preference ratings are used to fine-tune a model's behavior, commonly used to align chatbot responses with human expectations."
+  },
+  {
+    "id": "kb027",
+    "topic": "Chain-of-Thought Prompting",
+    "question": "What is chain-of-thought prompting?",
+    "answer": "Chain-of-thought prompting encourages a language model to generate intermediate reasoning steps before giving a final answer, often improving accuracy on complex problems."
+  },
+  {
+    "id": "kb028",
+    "topic": "Retrieval-Augmented Generation",
+    "question": "What is RAG (Retrieval-Augmented Generation)?",
+    "answer": "RAG combines a language model with an external retrieval system, fetching relevant documents or facts at query time and using them to ground the model's generated answer."
+  },
+  {
+    "id": "kb029",
+    "topic": "Vector Databases",
+    "question": "What is a vector database?",
+    "answer": "A vector database stores data as high-dimensional embeddings and enables fast similarity search, commonly used to power retrieval-augmented generation and semantic search."
+  },
+  {
+    "id": "kb030",
+    "topic": "Cosine Similarity",
+    "question": "What is cosine similarity?",
+    "answer": "Cosine similarity measures how similar two vectors are by calculating the cosine of the angle between them, widely used to compare text embeddings."
+  },
+  {
+    "id": "kb031",
+    "topic": "LoRA",
+    "question": "What is LoRA (Low-Rank Adaptation)?",
+    "answer": "LoRA is an efficient fine-tuning technique that freezes most of a pretrained model's weights and injects small trainable low-rank matrices, greatly reducing the compute needed to adapt large models."
+  },
+  {
+    "id": "kb032",
+    "topic": "Quantization",
+    "question": "What is model quantization?",
+    "answer": "Quantization reduces the numerical precision of a model's weights, such as converting from 32-bit to 8-bit numbers, to shrink model size and speed up inference with minimal accuracy loss."
+  },
+  {
+    "id": "kb033",
+    "topic": "Model Distillation",
+    "question": "What is knowledge distillation?",
+    "answer": "Knowledge distillation trains a smaller 'student' model to mimic the outputs of a larger 'teacher' model, producing a lightweight model that retains much of the teacher's performance."
+  },
+  {
+    "id": "kb034",
+    "topic": "Perplexity",
+    "question": "What is perplexity in language modeling?",
+    "answer": "Perplexity measures how well a language model predicts a sample of text; lower perplexity means the model is less 'surprised' by the text and generally performs better."
+  },
+  {
+    "id": "kb035",
+    "topic": "BLEU Score",
+    "question": "What is the BLEU score?",
+    "answer": "BLEU is a metric that evaluates machine-generated text, typically translations, by comparing overlapping word sequences (n-grams) with one or more human reference texts."
+  },
+  {
+    "id": "kb036",
+    "topic": "Overfitting",
+    "question": "What is overfitting in machine learning?",
+    "answer": "Overfitting occurs when a model learns the training data too closely, including its noise, and as a result performs poorly on new, unseen data."
+  },
+  {
+    "id": "kb037",
+    "topic": "Underfitting",
+    "question": "What is underfitting in machine learning?",
+    "answer": "Underfitting occurs when a model is too simple to capture the underlying patterns in the training data, resulting in poor performance on both training and new data."
+  },
+  {
+    "id": "kb038",
+    "topic": "Gradient Descent",
+    "question": "What is gradient descent?",
+    "answer": "Gradient descent is an optimization algorithm that iteratively adjusts a model's parameters in the direction that reduces the loss function, gradually improving the model's predictions."
+  },
+  {
+    "id": "kb039",
+    "topic": "Backpropagation",
+    "question": "What is backpropagation?",
+    "answer": "Backpropagation is the algorithm used to compute how much each weight in a neural network contributed to the error, allowing gradient descent to update the weights layer by layer."
+  },
+  {
+    "id": "kb040",
+    "topic": "Loss Function",
+    "question": "What is a loss function?",
+    "answer": "A loss function measures how far a model's predictions are from the actual target values, providing the signal that training algorithms use to improve the model."
+  },
+  {
+    "id": "kb041",
+    "topic": "Learning Rate",
+    "question": "What is the learning rate in training?",
+    "answer": "The learning rate controls how large a step a model's optimizer takes when updating weights during training; too high can cause instability, too low can make training very slow."
+  },
+  {
+    "id": "kb042",
+    "topic": "Epoch",
+    "question": "What is an epoch in model training?",
+    "answer": "An epoch is one complete pass of the entire training dataset through a machine learning model during training."
+  },
+  {
+    "id": "kb043",
+    "topic": "Dropout",
+    "question": "What is dropout in neural networks?",
+    "answer": "Dropout is a regularization technique that randomly disables a fraction of neurons during training, helping prevent overfitting by discouraging over-reliance on specific neurons."
+  },
+  {
+    "id": "kb044",
+    "topic": "Self-Supervised Learning",
+    "question": "What is self-supervised learning?",
+    "answer": "Self-supervised learning trains models using automatically generated labels from the data itself, such as predicting a missing word, without requiring manually labeled datasets."
+  },
+  {
+    "id": "kb045",
+    "topic": "Autoregressive Models",
+    "question": "What is an autoregressive language model?",
+    "answer": "An autoregressive language model generates text one token at a time, predicting each next token based on all the tokens generated so far, as GPT-style models do."
+  },
+  {
+    "id": "kb046",
+    "topic": "Masked Language Modeling",
+    "question": "What is masked language modeling?",
+    "answer": "Masked language modeling trains a model by hiding random words in a sentence and having it predict the missing words, the approach used to pretrain BERT."
+  },
+  {
+    "id": "kb047",
+    "topic": "Text-to-Image Models",
+    "question": "What is a text-to-image generative model?",
+    "answer": "A text-to-image model generates images from natural language descriptions, typically using diffusion or GAN-based architectures, such as Stable Diffusion or DALL-E."
+  },
+  {
+    "id": "kb048",
+    "topic": "Multimodal Models",
+    "question": "What is a multimodal AI model?",
+    "answer": "A multimodal model can process and relate multiple types of data, such as text, images, and audio, within a single system, rather than handling only one data type."
+  },
+  {
+    "id": "kb049",
+    "topic": "CLIP",
+    "question": "What is CLIP?",
+    "answer": "CLIP is a multimodal model developed by OpenAI that learns to connect images and text by training on image-caption pairs, enabling tasks like zero-shot image classification."
+  },
+  {
+    "id": "kb050",
+    "topic": "Prompt Injection",
+    "question": "What is prompt injection?",
+    "answer": "Prompt injection is a security risk where malicious input is crafted to manipulate a language model into ignoring its original instructions or producing unintended behavior."
+  },
+  {
+    "id": "kb051",
+    "topic": "AI Alignment",
+    "question": "What is AI alignment?",
+    "answer": "AI alignment is the effort to ensure an AI system's goals, behaviors, and outputs match human intentions and values, rather than optimizing for unintended objectives."
+  },
+  {
+    "id": "kb052",
+    "topic": "Bias in AI Models",
+    "question": "What is bias in AI models?",
+    "answer": "Bias in AI models refers to systematic errors or unfair outcomes that arise when training data or model design reflect skewed, incomplete, or unrepresentative patterns."
+  },
+  {
+    "id": "kb053",
+    "topic": "Context Window",
+    "question": "What is a context window in an LLM?",
+    "answer": "The context window is the maximum number of tokens a language model can consider at once, including both the prompt and its generated response."
+  },
+  {
+    "id": "kb054",
+    "topic": "Temperature Sampling",
+    "question": "What is temperature in text generation?",
+    "answer": "Temperature is a sampling parameter that controls randomness in text generation; lower values make output more predictable, higher values make it more diverse and creative."
+  },
+  {
+    "id": "kb055",
+    "topic": "Top-k and Top-p Sampling",
+    "question": "What is top-k and top-p sampling?",
+    "answer": "Top-k sampling restricts the model to choosing from the k most likely next tokens, while top-p (nucleus) sampling chooses from the smallest set of tokens whose combined probability exceeds p."
+  },
+  {
+    "id": "kb056",
+    "topic": "Beam Search",
+    "question": "What is beam search?",
+    "answer": "Beam search is a decoding strategy that keeps track of multiple candidate sequences at each generation step, aiming to find a higher-quality overall output than always picking the single most likely next token."
+  },
+  {
+    "id": "kb057",
+    "topic": "Instruction Tuning",
+    "question": "What is instruction tuning?",
+    "answer": "Instruction tuning fine-tunes a language model on examples of instructions paired with desired responses, improving its ability to follow natural language commands."
+  },
+  {
+    "id": "kb058",
+    "topic": "Foundation Models",
+    "question": "What is a foundation model?",
+    "answer": "A foundation model is a large model pretrained on broad data that can be adapted, via fine-tuning or prompting, to a wide range of downstream tasks."
+  },
+  {
+    "id": "kb059",
+    "topic": "Open Source vs Closed Source LLMs",
+    "question": "What is the difference between open source and closed source LLMs?",
+    "answer": "Open source LLMs release their model weights and often training details publicly for anyone to use or modify, while closed source LLMs are accessed only through a provider's API or product, with weights kept private."
+  },
+  {
+    "id": "kb060",
+    "topic": "Model Checkpoint",
+    "question": "What is a model checkpoint?",
+    "answer": "A model checkpoint is a saved snapshot of a model's weights at a particular point in training, allowing training to resume or the model to be reused later."
+  },
+  {
+    "id": "kb061",
+    "topic": "Inference vs Training",
+    "question": "What is the difference between training and inference?",
+    "answer": "Training is the process of adjusting a model's weights using data and a loss function, while inference is using an already-trained model to make predictions or generate outputs on new input."
+  },
+  {
+    "id": "kb062",
+    "topic": "GPU Acceleration",
+    "question": "Why are GPUs used for training AI models?",
+    "answer": "GPUs perform many parallel matrix computations far faster than CPUs, which makes them well suited to the large-scale numerical operations required to train and run deep learning models."
+  },
+  {
+    "id": "kb063",
+    "topic": "Explainability",
+    "question": "What is explainability in AI?",
+    "answer": "Explainability (or interpretability) refers to techniques and practices that help humans understand why an AI model produced a particular output or decision."
+  },
+  {
+    "id": "kb064",
+    "topic": "Latent Space",
+    "question": "What is a latent space?",
+    "answer": "A latent space is a compressed, lower-dimensional representation that a model learns to capture the essential features of its input data, used by models like VAEs and diffusion models."
+  },
+  {
+    "id": "kb065",
+    "topic": "Catastrophic Forgetting",
+    "question": "What is catastrophic forgetting?",
+    "answer": "Catastrophic forgetting occurs when a neural network loses previously learned knowledge after being trained on new data or tasks, a common challenge when fine-tuning models sequentially."
+  },
+  {
+    "id": "kb066",
+    "topic": "GAN Generator",
+    "question": "What is the generator in a GAN?",
+    "answer": "The generator in a GAN is the network that creates synthetic data samples, such as images, starting from random noise, trying to produce output realistic enough to fool the discriminator."
+  },
+  {
+    "id": "kb067",
+    "topic": "GAN Discriminator",
+    "question": "What is the discriminator in a GAN?",
+    "answer": "The discriminator in a GAN is the network that evaluates samples and tries to distinguish real data from the fake data produced by the generator, providing the feedback signal that trains the generator."
+  },
+  {
+    "id": "kb068",
+    "topic": "Subword Tokenization",
+    "question": "What is subword tokenization?",
+    "answer": "Subword tokenization splits words into smaller meaningful units, such as prefixes, suffixes, or common character sequences, allowing a model to represent rare or unseen words as combinations of known subword pieces rather than a single unknown token."
+  },
+  {
+    "id": "kb069",
+    "topic": "Byte Pair Encoding",
+    "question": "What is Byte Pair Encoding (BPE)?",
+    "answer": "Byte Pair Encoding (BPE) is a subword tokenization algorithm that iteratively merges the most frequently occurring pairs of characters or character sequences in a corpus, building a vocabulary of common subword units."
+  },
+  {
+    "id": "kb070",
+    "topic": "WordPiece",
+    "question": "What is WordPiece tokenization?",
+    "answer": "WordPiece is a subword tokenization algorithm, used by BERT, that builds its vocabulary by iteratively merging character sequences that maximize the likelihood of the training data, similar in spirit to BPE."
+  },
+  {
+    "id": "kb071",
+    "topic": "SentencePiece",
+    "question": "What is SentencePiece?",
+    "answer": "SentencePiece is a tokenization library that treats text as a raw stream of characters, including spaces, and learns subword units directly from it, making it language-independent and used by models like XLNet and T5."
+  },
+  {
+    "id": "kb072",
+    "topic": "Encoder",
+    "question": "What is an encoder in NLP models?",
+    "answer": "An encoder is the part of a model that reads and processes an input sequence into a numerical representation capturing its meaning and context, which can then be used for classification or passed to a decoder."
+  },
+  {
+    "id": "kb073",
+    "topic": "Decoder",
+    "question": "What is a decoder in NLP models?",
+    "answer": "A decoder is the part of a model that takes a representation, often from an encoder, and generates an output sequence one step at a time, such as producing translated text or a generated response."
+  },
+  {
+    "id": "kb074",
+    "topic": "Cross-Attention",
+    "question": "What is cross-attention?",
+    "answer": "Cross-attention is an attention mechanism where a decoder attends to the encoder's output representations, letting the model focus on the most relevant parts of the input while generating each part of the output."
+  },
+  {
+    "id": "kb075",
+    "topic": "In-Context Learning",
+    "question": "What is in-context learning?",
+    "answer": "In-context learning is the ability of a large language model to perform a new task just from examples or instructions given in the prompt, without updating any of its weights."
+  },
+  {
+    "id": "kb076",
+    "topic": "System Prompt",
+    "question": "What is a system prompt?",
+    "answer": "A system prompt is an instruction given to a language model before the conversation begins, setting its role, behavior, or constraints, separate from the user's own messages."
+  },
+  {
+    "id": "kb077",
+    "topic": "Prompt Template",
+    "question": "What is a prompt template?",
+    "answer": "A prompt template is a reusable, structured format for constructing prompts, often with placeholders filled in with specific inputs, used to keep prompting consistent across many queries."
+  },
+  {
+    "id": "kb078",
+    "topic": "Reward Model",
+    "question": "What is a reward model in RLHF?",
+    "answer": "A reward model is a model trained to score how good or preferred an output is, based on human feedback, and it's used to guide the fine-tuning of a language model during reinforcement learning from human feedback."
+  },
+  {
+    "id": "kb079",
+    "topic": "PPO",
+    "question": "What is PPO in the context of LLM training?",
+    "answer": "Proximal Policy Optimization (PPO) is a reinforcement learning algorithm commonly used to fine-tune language models against a reward model in RLHF, updating the model's behavior while limiting how far it drifts from its previous version."
+  },
+  {
+    "id": "kb080",
+    "topic": "DPO",
+    "question": "What is DPO (Direct Preference Optimization)?",
+    "answer": "Direct Preference Optimization (DPO) is a technique for aligning language models with human preferences directly from preference data, without needing a separate reward model or reinforcement learning."
+  },
+  {
+    "id": "kb081",
+    "topic": "Constitutional AI",
+    "question": "What is Constitutional AI?",
+    "answer": "Constitutional AI is a training approach where a model is guided to critique and revise its own outputs according to a set of written principles, reducing reliance on large amounts of human-labeled feedback."
+  },
+  {
+    "id": "kb082",
+    "topic": "Mixture of Experts",
+    "question": "What is a Mixture of Experts (MoE) model?",
+    "answer": "A Mixture of Experts model contains multiple specialized sub-networks called experts, with a routing mechanism activating only a subset of them for each input, allowing very large models to run more efficiently."
+  },
+  {
+    "id": "kb083",
+    "topic": "Scaling Laws",
+    "question": "What are scaling laws in deep learning?",
+    "answer": "Scaling laws describe predictable relationships between a model's performance and factors like its size, training data amount, and compute used, helping researchers estimate how much a model will improve as those factors increase."
+  },
+  {
+    "id": "kb084",
+    "topic": "Emergent Abilities",
+    "question": "What are emergent abilities in LLMs?",
+    "answer": "Emergent abilities are capabilities that appear in large language models only once they cross a certain scale, and are not reliably present in smaller versions of the same model architecture."
+  },
+  {
+    "id": "kb085",
+    "topic": "AI Agents",
+    "question": "What is an AI agent?",
+    "answer": "An AI agent is a system built around a language model that can plan, make decisions, and take actions, often by calling tools or external functions, to accomplish a goal rather than just producing a single response."
+  },
+  {
+    "id": "kb086",
+    "topic": "Function Calling",
+    "question": "What is function calling in LLMs?",
+    "answer": "Function calling is a capability where a language model can generate a structured request to invoke an external function or tool, such as an API, then use the returned result to continue its response."
+  },
+  {
+    "id": "kb087",
+    "topic": "Semantic Search",
+    "question": "What is semantic search?",
+    "answer": "Semantic search retrieves results based on the meaning of a query rather than exact keyword matches, typically by comparing embeddings of the query and candidate documents."
+  },
+  {
+    "id": "kb088",
+    "topic": "Approximate Nearest Neighbor Search",
+    "question": "What is approximate nearest neighbor (ANN) search?",
+    "answer": "Approximate nearest neighbor search is a technique for quickly finding vectors close to a query vector in a large embedding space, trading a small amount of accuracy for much faster search speed."
+  },
+  {
+    "id": "kb089",
+    "topic": "Streaming Generation",
+    "question": "What is streaming generation in LLMs?",
+    "answer": "Streaming generation is when a language model's output is sent to the user token by token as it's produced, rather than waiting for the full response to finish, reducing perceived latency."
+  },
+  {
+    "id": "kb090",
+    "topic": "Model Pruning",
+    "question": "What is model pruning?",
+    "answer": "Model pruning removes less important weights or neurons from a trained neural network to reduce its size and computational cost, ideally with minimal impact on accuracy."
+  },
+  {
+    "id": "kb091",
+    "topic": "Named Entity Recognition",
+    "question": "What is Named Entity Recognition (NER)?",
+    "answer": "Named Entity Recognition is an NLP task that identifies and classifies named entities in text, such as people, organizations, locations, and dates."
+  },
+  {
+    "id": "kb092",
+    "topic": "Sentiment Analysis",
+    "question": "What is sentiment analysis?",
+    "answer": "Sentiment analysis is an NLP task that determines the emotional tone of a piece of text, typically classifying it as positive, negative, or neutral."
+  },
+  {
+    "id": "kb093",
+    "topic": "Text Summarization",
+    "question": "What is text summarization?",
+    "answer": "Text summarization is the task of producing a shorter version of a text that preserves its most important information, either by extracting key sentences or generating new, condensed text."
+  },
+  {
+    "id": "kb094",
+    "topic": "Machine Translation",
+    "question": "What is machine translation?",
+    "answer": "Machine translation is the task of automatically translating text from one language to another using a trained model, typically an encoder-decoder or transformer-based architecture."
+  },
+  {
+    "id": "kb095",
+    "topic": "Sequence-to-Sequence Models",
+    "question": "What is a sequence-to-sequence model?",
+    "answer": "A sequence-to-sequence model maps an input sequence to an output sequence of possibly different length, commonly using an encoder-decoder architecture, used for tasks like translation and summarization."
+  },
+  {
+    "id": "kb096",
+    "topic": "Contextual Embeddings",
+    "question": "What is the difference between static and contextual embeddings?",
+    "answer": "Static embeddings, like Word2Vec, assign each word a single fixed vector regardless of context, while contextual embeddings, produced by models like BERT, generate a different vector for a word depending on the surrounding sentence."
+  },
+  {
+    "id": "kb097",
+    "topic": "Layer Normalization",
+    "question": "What is layer normalization?",
+    "answer": "Layer normalization is a technique that normalizes the inputs across the features of a single training example, helping stabilize and speed up training in deep neural networks like transformers."
+  },
+  {
+    "id": "kb098",
+    "topic": "Residual Connections",
+    "question": "What are residual (skip) connections?",
+    "answer": "Residual connections add a layer's input directly to its output, allowing gradients to flow more easily through deep networks and helping prevent the vanishing gradient problem."
+  },
+  {
+    "id": "kb099",
+    "topic": "Softmax Function",
+    "question": "What is the softmax function?",
+    "answer": "The softmax function converts a vector of raw scores into a probability distribution, where all values are between 0 and 1 and sum to 1, commonly used in the final layer of classification and language models."
+  },
+  {
+    "id": "kb100",
+    "topic": "Cross-Entropy Loss",
+    "question": "What is cross-entropy loss?",
+    "answer": "Cross-entropy loss measures the difference between a model's predicted probability distribution and the true distribution, and is the standard loss function used to train classification and language models."
+  },
+  {
+    "id": "kb101",
+    "topic": "Activation Function",
+    "question": "What is an activation function?",
+    "answer": "An activation function introduces non-linearity into a neural network by transforming a neuron's output, allowing the network to learn complex patterns rather than just linear relationships."
+  },
+  {
+    "id": "kb102",
+    "topic": "ReLU",
+    "question": "What is ReLU?",
+    "answer": "ReLU (Rectified Linear Unit) is a common activation function that outputs the input directly if it's positive, and zero otherwise, valued for its simplicity and effectiveness in deep networks."
+  }
+]
