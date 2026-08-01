@@ -1,3 +1,4 @@
+
 # 🧪 GenAI & LLMs Q&A Bot
 
 A conversational chatbot focused on Generative AI and LLM concepts, with a built-in, **dataset-free hallucination detector**. Instead of relying on a fixed knowledge base, the bot checks its own reliability in real time by asking itself the same question multiple times and measuring how consistent its answers are — a lightweight version of the *SelfCheckGPT* technique used in hallucination research.
@@ -145,3 +146,7 @@ Built to apply course concepts on generative AI and LLMs:
 ## 📄 License
 
 MIT — feel free to fork, learn from, or build on this.
+
+# genai-llms-qa-bot
+AI-powered Q&amp;A assistant built with Python and Gradio. Uses semantic search with all-MiniLM-L6-v2 to retrieve answers from a knowledge base and falls back to Claude Haiku for low-confidence queries. Includes hallucination detection for more reliable responses.
+
