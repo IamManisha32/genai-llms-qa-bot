@@ -8,8 +8,6 @@ detection via self-consistency checking, plus a tokenizer inspector tab.
 Run with:
     python app/app.py
 
-First run downloads flan-t5-small (~300MB) and the sentence-transformers
-embedding model -- needs internet, only happens once (cached after that).
 """
 
 import os
@@ -42,12 +40,6 @@ EXAMPLE_QUESTIONS = [
     "What is the capital of France?",  # deliberately off-topic, demonstrates the domain guard
 ]
 
-# --------------------------------------------------------------------------
-# Domain guard -- now driven entirely by semantic similarity against the KB,
-# instead of keyword matching. A question is "in domain" if it's semantically
-# close to ANY topic in the knowledge base, however it's phrased.
-# --------------------------------------------------------------------------
-
 OFF_TOPIC_MESSAGE = (
     "🤖 I'm specialized in **Generative AI & LLM topics only** — things like GANs, transformers, "
     "tokenization, fine-tuning, RAG, or hallucination detection.\n\n"
@@ -55,10 +47,9 @@ OFF_TOPIC_MESSAGE = (
     "*\"What is tokenization?\"* instead."
 )
 
-# --------------------------------------------------------------------------
 # Small talk / greetings -- handled separately from the domain guard so basic
 # conversational messages feel natural instead of being rejected outright.
-# --------------------------------------------------------------------------
+
 
 GREETING_EXACT = {
     "hi", "hii", "hiii", "hello", "hey", "hey there", "yo", "sup", "hola",
@@ -97,21 +88,6 @@ def match_smalltalk(message: str):
     return None
 
 print("Loading models... this may take a minute the first time.")
-
-# --------------------------------------------------------------------------
-# Generator fallback chain -- only used as a LAST RESORT, when the question
-# is in-domain but doesn't confidently match the curated knowledge base.
-#
-# Priority:
-#   1. Claude Haiku via the Anthropic API, if ANTHROPIC_API_KEY is set --
-#      much more fluent and accurate than a small local model.
-#   2. Local flan-t5-large (CPU-friendly, but noticeably weaker) if
-#      ENABLE_LOCAL_FALLBACK is true (the default).
-#   3. No fallback generator at all -- only the curated KB answers questions.
-#      Set ENABLE_LOCAL_FALLBACK=false to use this mode; it's the right
-#      choice for free/low-RAM hosting (e.g. Render's free tier, 512MB RAM),
-#      since flan-t5-large plus its dependencies won't fit in that budget.
-# --------------------------------------------------------------------------
 
 FALLBACK_SYSTEM_PROMPT = (
     "You are a focused assistant that only answers questions about Generative AI and Large "
@@ -208,13 +184,6 @@ tokenizer_inspector = TokenizerInspector()
 print("Models loaded. Launching app...")
 
 
-# --------------------------------------------------------------------------
-# Quality gate for fallback-generated answers -- point 5/7: never show a
-# generated answer unless it passes a consistency check AND a basic sanity
-# check (not empty, not too short, not a known glitch/blocklisted phrase).
-# If the first attempt fails the sanity check, one regeneration is tried
-# before giving up and showing a suggestion message instead.
-# --------------------------------------------------------------------------
 
 MIN_ANSWER_CHARS = 18   # anything shorter than this is almost never a real answer
 MIN_ANSWER_WORDS = 4
@@ -260,12 +229,8 @@ def build_no_answer_message(user_message: str) -> str:
         f"Try asking about one of these related topics instead: {topic_list}."
     )
 
-
-# --------------------------------------------------------------------------
 # Theme -- use Gradio's real theming system (not manual CSS var overrides)
-# so every component, including chat bubbles, gets correct contrast in both
-# light and dark mode automatically.
-# --------------------------------------------------------------------------
+
 
 theme = gr.themes.Soft(
     primary_hue="pink",
@@ -391,10 +356,7 @@ def _format_bot_message(answer: str, result, samples) -> str:
         f"</details>"
     )
 
-
-# --------------------------------------------------------------------------
 # Core chat logic
-# --------------------------------------------------------------------------
 
 def respond(user_message, history):
     if not user_message or not user_message.strip():
@@ -423,9 +385,8 @@ def respond(user_message, history, last_topic):
     history = history + [{"role": "assistant", "content": "🤔 Thinking..."}]
     yield history, "", last_topic
 
-    # --- Context-aware retrieval: fold in the previous topic so short
     # follow-ups like "what is the generator and discriminator?" right after
-    # a GAN explanation can still be resolved correctly. ---
+ 
     if last_topic:
         retrieval_query = f"{last_topic}. {user_message}"
     else:
@@ -453,9 +414,7 @@ def respond(user_message, history, last_topic):
         yield history, "", retrieved.topic
         return
 
-    # --- Weak-but-in-domain match: LAST RESORT -> generate, then gate the
-    # result before ever showing it. Raw model output is never displayed
-    # unless it passes both the consistency check and the sanity check. ---
+
     if not FALLBACK_AVAILABLE:
         # KB-only mode (e.g. free/low-RAM hosting) -- no generator configured at all.
         history[-1] = {"role": "assistant", "content": build_no_answer_message(user_message)}
@@ -509,10 +468,8 @@ def inspect_tokenizers(text: str):
         blocks.append("\n\n".join(block))
     return "\n\n---\n\n".join(blocks)
 
-
-# --------------------------------------------------------------------------
 # UI layout
-# --------------------------------------------------------------------------
+
 
 with gr.Blocks(title=APP_TITLE, fill_height=True) as demo:
     gr.Markdown(f"<div class='hg-title-banner'>\n\n# {APP_TITLE}\n\n</div>")
