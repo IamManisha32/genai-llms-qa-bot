@@ -1,16 +1,4 @@
-"""
-self_consistency_detector.py
 
-A dataset-free hallucination detector based on self-consistency checking
-(inspired by the SelfCheckGPT approach).
-
-Idea: ask the model the same question multiple times with sampling enabled.
-If the model actually "knows" the answer, its responses should stay
-semantically consistent across samples. If it's guessing/hallucinating,
-the responses tend to drift and contradict each other.
-
-This works on ANY question in ANY domain -- no fixed knowledge base required.
-"""
 
 import itertools
 from dataclasses import dataclass
@@ -28,8 +16,7 @@ class ConsistencyResult:
 
 class SelfConsistencyDetector:
     def __init__(self, similarity_fn: Callable[[str, str], float]):
-        """similarity_fn: any function that takes two strings and returns a
-        0.0-1.0 similarity score (e.g. SemanticSimilarity().similarity)."""
+
         self.similarity_fn = similarity_fn
 
     def _average_pairwise_similarity(self, texts: List[str]) -> float:
