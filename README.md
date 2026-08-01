@@ -19,7 +19,8 @@ Built as a hands-on project applying the core concepts from a Generative AI cour
 
 ## 🖼️ Demo
 
-*(Add a screenshot or GIF of the app here before sharing — this is the first thing recruiters see.)*
+<img width="940" height="388" alt="image" src="https://github.com/user-attachments/assets/f660e838-fa27-4b5a-a59a-1c235927f9e1" />
+
 
 ---
 
