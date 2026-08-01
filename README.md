@@ -1,9 +1,9 @@
 
 # 🧪 GenAI & LLMs Q&A Bot
 
-A conversational chatbot focused on Generative AI and LLM concepts, with a built-in, **dataset-free hallucination detector**. Instead of relying on a fixed knowledge base, the bot checks its own reliability in real time by asking itself the same question multiple times and measuring how consistent its answers are — a lightweight version of the *SelfCheckGPT* technique used in hallucination research.
+A domain-specific chatbot for Generative AI and LLM concepts. It combines semantic retrieval, LLM-based answer generation, and self-consistency checking to reduce unreliable responses. Instead of relying on a fixed knowledge base, the bot checks its own reliability in real time by asking itself the same question multiple times and measuring how consistent its answers are — a lightweight version of the *SelfCheckGPT* technique used in hallucination research.
 
-Built as a hands-on project applying the core concepts from a Generative AI course: transformer-based LLMs, tokenization, custom PyTorch data pipelines, and hallucination detection.
+Built to apply concepts from Generative AI and LLMs, including transformers, tokenization, PyTorch data pipelines, and hallucination detection.
 
 ---
 
@@ -11,7 +11,7 @@ Built as a hands-on project applying the core concepts from a Generative AI cour
 
 - **Real chat interface** — multi-turn conversation, like ChatGPT/Claude
 - **Domain-scoped** — only answers questions about GenAI/LLM topics (GANs, transformers, tokenization, fine-tuning, RAG, etc.); politely redirects anything off-topic instead of guessing
-- **Self-consistency hallucination detection** — every answer is checked by generating multiple independent samples and measuring their semantic agreement. High agreement → 🟢 Reliable. Low agreement → 🔴 Likely Hallucinated. No fixed knowledge base required — works without ever needing hand-written ground-truth answers.
+- **Self-consistency hallucination detection** — every answer is checked by generating multiple independent samples and measuring their semantic agreement. High agreement → 🟢 Reliable. Low agreement → 🔴 Likely Hallucinated.
 - **Tokenizer Inspector tab** — compares how NLTK, spaCy, BertTokenizer, and XLNetTokenizer each split the same input text, including subword tokens, special tokens, token IDs, and attention masks
 - **Custom PyTorch data pipeline** (`src/dataset.py`) — a standalone `Dataset` + `DataLoader` with a custom collate function demonstrating batching, padding, and attention masking for LLM training data
 
@@ -26,7 +26,7 @@ Built as a hands-on project applying the core concepts from a Generative AI cour
 
 ## 🧠 How answers are generated (and how hallucinations are caught)
 
-This isn't a single fixed-answer bot, and it isn't a raw "ask an LLM anything" bot either — it's a layered pipeline that tries the most reliable source first:
+The application follows a multi-stage pipeline to provide reliable answers.
 
 1. **Curated knowledge base (102 entries)** — the question is embedded and compared against every KB entry using sentence-transformer embeddings. A strong match (≥0.75 similarity) returns the curated answer directly. No LLM involved, no hallucination risk.
 2. **Domain check** — if nothing in the KB is even reasonably close (<0.35 similarity), the question is treated as out of scope, and the bot says so instead of guessing.
@@ -110,7 +110,7 @@ Open the local URL printed in the terminal (usually `http://127.0.0.1:7860`).
 
 > First run downloads a sentence-embedding model, and either `flan-t5-large` (~3GB, if no API key is set) or nothing extra (if using the hosted fallback below) — this needs internet access once; models are cached afterward.
 
-### Optional: better fallback answers via Claude Haiku
+### optional hosted fallback model
 
 The knowledge base directly and reliably answers the ~100 core GenAI/LLM topics it covers. For anything else in-domain but not in the KB, the app falls back to generation. By default this uses a small local model (`flan-t5-large`), which is CPU-friendly but noticeably less fluent. For much better fallback quality, set an Anthropic API key before running the app:
 
@@ -128,7 +128,7 @@ With the key set, the app automatically uses Claude Haiku for fallback answers i
 
 ## ⚠️ Known Limitations
 
-- `flan-t5-small` is a small, CPU-friendly model chosen for fast local demos — its answers are less accurate than larger LLMs. The hallucination-detection *methodology* is the focus of this project, not raw answer quality.
+- `flan-t5-small` is a small, CPU-friendly model chosen for fast local demos — optimized for lightweight local inference. The hallucination-detection *methodology* is the focus of this project, not raw answer quality.
 - Self-consistency scoring is a heuristic, not a guarantee — a model can be consistently wrong. It's a useful *signal*, not a certainty.
 - The domain guard uses keyword matching, so it's possible to phrase an in-domain question in a way it doesn't recognize, or vice versa.
 
@@ -149,5 +149,5 @@ Built to apply course concepts on generative AI and LLMs:
 MIT — feel free to fork, learn from, or build on this.
 
 # genai-llms-qa-bot
-AI-powered Q&amp;A assistant built with Python and Gradio. Uses semantic search with all-MiniLM-L6-v2 to retrieve answers from a knowledge base and falls back to Claude Haiku for low-confidence queries. Includes hallucination detection for more reliable responses.
+AI-powered Q&amp;A assistant built with Python and Gradio. Uses semantic retrieval with sentence-transformer embeddings and optionally supports Claude Haiku as a fallback model. Includes hallucination detection for more reliable responses.
 
