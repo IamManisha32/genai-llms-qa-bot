@@ -23,9 +23,8 @@ from self_consistency_detector import SelfConsistencyDetector
 from tokenizer_inspector import TokenizerInspector
 
 KB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "knowledge_base.json")
-CONFIDENT_MATCH_THRESHOLD = 0.68  # tuned down from 0.75 after regression testing showed near-exact
-                                    # phrasing variants (e.g. "What is DPO?" vs the full KB question)
-                                    # were narrowly missing the higher threshold
+CONFIDENT_MATCH_THRESHOLD = 0.68  
+                                    
 DOMAIN_THRESHOLD = 0.35           # below this -> treat as off-topic; between this and confident -> LLM fallback with hint
 
 
