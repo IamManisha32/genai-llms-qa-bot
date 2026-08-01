@@ -1,15 +1,3 @@
-"""
-tokenizer_inspector.py
-
-Compares how different tokenizers (NLTK, spaCy, BertTokenizer, XLNetTokenizer)
-break the same piece of text into tokens. Useful for understanding subword
-tokenization vs. word-level tokenization, and for the "tokenizer inspector"
-tab in the Gradio app.
-
-Run this file directly to see a side-by-side comparison printed to console:
-    python src/tokenizer_inspector.py
-"""
-
 from dataclasses import dataclass, field
 from typing import List, Dict
 
@@ -28,15 +16,13 @@ class TokenizationResult:
 
 
 class TokenizerInspector:
-    """Wraps several tokenizers behind a single, simple interface."""
+
 
     def __init__(self):
         self._nltk_ready = False
         self._spacy_nlp = None
         self._bert_tokenizer = None
         self._xlnet_tokenizer = None
-
-    # ---------- lazy loaders (only import/download what's actually used) ----------
 
     def _ensure_nltk(self):
         if not self._nltk_ready:
@@ -66,8 +52,6 @@ class TokenizerInspector:
         if self._xlnet_tokenizer is None:
             from transformers import XLNetTokenizer
             self._xlnet_tokenizer = XLNetTokenizer.from_pretrained("xlnet-base-cased")
-
-    # ---------- individual tokenizers ----------
 
     def tokenize_nltk(self, text: str) -> TokenizationResult:
         self._ensure_nltk()
@@ -109,12 +93,8 @@ class TokenizerInspector:
             special_tokens=special,
         )
 
-    # ---------- convenience: run all at once ----------
-
     def compare_all(self, text: str) -> Dict[str, TokenizationResult]:
-        """Runs every tokenizer on the same text and returns all results.
-        Any tokenizer that fails to load (e.g. missing model) is skipped
-        with a warning instead of crashing the whole comparison."""
+
         results = {}
         for name, fn in [
             ("nltk", self.tokenize_nltk),
