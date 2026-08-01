@@ -1,20 +1,3 @@
-"""
-regression_test.py
-
-A systematic test set for the GenAI & LLMs Q&A Bot, covering core topics,
-sub-topics, out-of-scope questions, small talk, and multi-turn follow-ups.
-
-Run this after ANY change to app.py, hallucination_detector.py, or
-knowledge_base.json to confirm you haven't regressed something that used
-to work.
-
-Usage (from the project root, with the venv active):
-    python tests/regression_test.py
-
-This imports app.py directly (without launching the Gradio server) so it
-uses your REAL models -- expect it to take a couple of minutes to run,
-since each fallback-path question may trigger actual generation.
-"""
 
 import os
 import sys
@@ -22,15 +5,9 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "app"))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-# --------------------------------------------------------------------------
-# Test cases: (question, expected_category)
-#   "kb_verified" -> should hit the curated KB directly (✅ Verified badge)
-#   "off_topic"   -> should be rejected as outside the bot's domain
-#   "smalltalk"   -> should get a canned greeting/farewell reply
-# --------------------------------------------------------------------------
 
 SINGLE_TURN_CASES = [
-    # --- Core topics (should be confident KB hits) ---
+
     ("What is a GAN?", "kb_verified"),
     ("What is a transformer?", "kb_verified"),
     ("What is tokenization?", "kb_verified"),
@@ -42,7 +19,6 @@ SINGLE_TURN_CASES = [
     ("What is LoRA?", "kb_verified"),
     ("What is prompt engineering?", "kb_verified"),
     ("What is an AI hallucination?", "kb_verified"),
-    # --- Sub-topics (should NOT collapse into the parent topic's answer) ---
     ("What is the generator in a GAN?", "kb_verified"),
     ("What is the discriminator in a GAN?", "kb_verified"),
     ("What is subword tokenization?", "kb_verified"),
@@ -69,12 +45,12 @@ SINGLE_TURN_CASES = [
     ("What is the softmax function?", "kb_verified"),
     ("What is cross-entropy loss?", "kb_verified"),
     ("What is ReLU?", "kb_verified"),
-    # --- Out-of-scope (should be politely rejected) ---
+
     ("What is the capital of France?", "off_topic"),
     ("Who won the last cricket world cup?", "off_topic"),
     ("What's a good recipe for pasta?", "off_topic"),
     ("What's the weather like today?", "off_topic"),
-    # --- Small talk (should get a natural canned reply) ---
+
     ("hi", "smalltalk"),
     ("hello!", "smalltalk"),
     ("how are you?", "smalltalk"),
@@ -83,7 +59,6 @@ SINGLE_TURN_CASES = [
     ("who are you", "smalltalk"),
 ]
 
-# --- Multi-turn follow-up cases: (list_of_turns, expected_category_for_last_turn) ---
 FOLLOWUP_CASES = [
     (["What is a GAN?", "what about the generator and discriminator?"], "kb_verified"),
     (["What is tokenization?", "and what about the subword version?"], "kb_verified"),
