@@ -4,21 +4,6 @@ hallucination_detector.py
 Core logic for the project's hallmark feature: flagging when a chatbot's
 answer is NOT well-grounded in the known knowledge base (a lightweight
 proxy for detecting hallucinations).
-
-Pipeline:
-    1. retrieve_context()  -> find the closest matching KB entry for a question
-    2. score_groundedness() -> compare generated answer vs. retrieved answer
-    3. classify_confidence() -> turn the score into a human-readable flag
-
-Two interchangeable similarity backends are provided:
-    - LexicalSimilarity   : word-overlap based, works fully offline (used for
-                             local testing / no-internet environments)
-    - SemanticSimilarity  : sentence-transformers embeddings, much better
-                             quality, needs internet to download the model
-                             the first time (use this in the real app)
-
-Run directly to see a demo:
-    python src/hallucination_detector.py
 """
 
 import json
@@ -26,21 +11,15 @@ import re
 from dataclasses import dataclass
 from typing import List, Dict, Optional, Protocol
 
-
-# --------------------------------------------------------------------------
 # Similarity backends
-# --------------------------------------------------------------------------
 
 class SimilarityBackend(Protocol):
     def similarity(self, text_a: str, text_b: str) -> float:
-        """Returns a similarity score between 0.0 and 1.0."""
         ...
 
 
 class LexicalSimilarity:
-    """Simple, dependency-free word-overlap similarity (Jaccard index).
-    Not as accurate as embeddings, but works with zero internet/model
-    downloads -- good for testing the pipeline logic itself."""
+
 
     def _normalize(self, text: str) -> set:
         words = re.findall(r"[a-z0-9]+", text.lower())
@@ -57,8 +36,7 @@ class LexicalSimilarity:
 
 
 class SemanticSimilarity:
-    """Embedding-based similarity using sentence-transformers.
-    Requires internet on first use to download the model."""
+
 
     def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
         from sentence_transformers import SentenceTransformer, util
@@ -71,10 +49,8 @@ class SemanticSimilarity:
         score = self._util.cos_sim(emb_a, emb_b).item()
         return max(0.0, min(1.0, score))  # clamp to [0, 1]
 
-
-# --------------------------------------------------------------------------
 # Retrieval + scoring
-# --------------------------------------------------------------------------
+
 
 @dataclass
 class RetrievalResult:
@@ -106,9 +82,7 @@ class HallucinationDetector:
         return results[0]
 
     def retrieve_top_n(self, user_question: str, n: int = 3) -> List[RetrievalResult]:
-        """Returns the top-n closest KB entries to the user's question, sorted
-        by similarity score descending. Used both for the main answer match
-        and for suggesting related topics when no confident answer exists."""
+
         scored = []
         for entry in self.kb:
             score = self.backend.similarity(user_question, entry["question"])
@@ -125,7 +99,7 @@ class HallucinationDetector:
         return scored[:n]
 
     def classify_confidence(self, score: float) -> (str, Optional[str]):
-        """Maps a groundedness score to a human-readable, color-coded label."""
+
         if score >= 0.5:
             return "🟢 Reliable", None
         elif score >= 0.25:
@@ -134,20 +108,13 @@ class HallucinationDetector:
             return "🔴 Likely Hallucinated", "This answer does not appear to be grounded in the knowledge base. It may be inaccurate."
 
     def is_out_of_domain(self, retrieval_score: float, threshold: float = 0.30) -> bool:
-        """Checks whether the user's question is even close to anything in the
-        knowledge base at all (separate from whether the generated ANSWER is
-        grounded). A low retrieval score means the question itself is likely
-        outside the chatbot's known domain."""
         return retrieval_score < threshold
 
     def list_topics(self) -> List[Dict]:
-        """Returns all knowledge base entries, for the KB Explorer tab and
-        for suggesting topics when a question is out of domain."""
+
         return self.kb
 
     def evaluate(self, user_question: str, generated_answer: str) -> GroundednessResult:
-        """Full pipeline: retrieve the relevant KB entry, then score how well
-        the generated answer matches it."""
         retrieved = self.retrieve_context(user_question)
         groundedness_score = self.backend.similarity(generated_answer, retrieved.answer)
         label, warning = self.classify_confidence(groundedness_score)
@@ -188,5 +155,3 @@ if __name__ == "__main__":
             print(f"Warning:             {result.warning}")
     print("=" * 70)
 
-    # --- To use REAL semantic similarity instead (needs internet, better quality) ---
-    # detector = HallucinationDetector(kb_path, backend=SemanticSimilarity())
